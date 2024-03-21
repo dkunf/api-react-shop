@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 3000;
+const port = process.env.port || 3000;
 require("dotenv").config();
 
 const cors = require("cors");
@@ -29,4 +29,4 @@ const connectDB = async () => {
 
 connectDB();
 
-app.listen(PORT, () => console.log("server up on", PORT));
+app.listen(port, () => console.log("server up on", port));
