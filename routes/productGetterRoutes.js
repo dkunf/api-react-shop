@@ -1,13 +1,27 @@
 const { Router } = require("express");
-const getAllProducts = require("../controllers");
+const getAllProducts = require("../controllers/getAllProducts");
+const getProductById = require("../controllers/getProductById");
 const router = Router();
 
-router.get("/", (req, res) => {
-  res.json(getAllProducts());
+// /product
+router.get("/", async (req, res) => {
+  try {
+    res.json(await getAllProducts());
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ error: error.message });
+  }
 });
 
-router.get("/:id", (req, res) => {
-  res.send(`get a ${req.params.id} prod ok`);
+// /product/id
+router.get("/:id", async (req, res) => {
+  try {
+    const id = req.params.id.trim();
+    res.json(await getProductById(id));
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ error: error.message });
+  }
 });
 
 module.exports = router;
