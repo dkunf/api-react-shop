@@ -6,7 +6,7 @@ require("dotenv").config();
 
 const cors = require("cors");
 
-//it allows without cors, interesting...
+//it also allows without cors, interesting...
 //Access-Control-Allow-Headers:*
 //Access-Control-Allow-Methods:	*
 //Access-Control-Allow-Origin:	*
@@ -14,9 +14,10 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
-app.use("/product", require("./routes/productGetterRoutes"));
-app.use("/product", require("./routes/productSetterRoutes"));
-app.get("/", (req, res) => res.send("ok, workin'"));
+app.use("/product", require("./routes/productGetter.routes"));
+app.use("/product", require("./routes/productSetter.routes"));
+app.use("/user", require("./routes/user.routes"));
+app.get("/", (req, res) => res.send("ok, default route '/' workin'"));
 
 const connectDB = async () => {
   try {
